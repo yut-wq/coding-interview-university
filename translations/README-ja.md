@@ -491,22 +491,22 @@ Anki 形式のフラッシュカード データベース: https://ankiweb.net/s
 ## データ構造
 
 - ### 配列
-	- [ ] 配列について:
+	- [x] 配列について:
 		- [アレイ CS50 ハーバード大学](https://www.youtube.com/watch?v=tI_tIZFyKBw&t=3009s)
 			- [配列 (動画)](https://www.coursera.org/lecture/data-structures/arrays-OsBSF)
 			- [UC Berkeley CS61B - Linear and Multi-Dim Arrays (動画) (15 分 32 秒から視聴開始)](https://archive.org/details/ucberkeley_webcast_Wp8oiO_CZZE) (Start watching from 15m 32s)
 			- [動的配列 (動画)](https://www.coursera.org/lecture/data-structures/dynamic-arrays-EwbnV)
 			- [ギザギザ配列 (動画)](https://www.youtube.com/watch?v=1jtrQqYpt7g)
 	- [ ] ベクトルを実装します (自動サイズ変更を備えた可変配列):
-		- [ ] 配列とポインターを使用したコーディングと、インデックスを使用する代わりにインデックスにジャンプするポインターの計算を練習します。
-		- [ ] メモリが割り当てられた新しい生データ配列
+		- [x] 配列とポインターを使用したコーディングと、インデックスを使用する代わりにインデックスにジャンプするポインターの計算を練習します。
+		- [x] メモリが割り当てられた新しい生データ配列
 			- 内部で int 配列を割り当てることができますが、その機能は使用できません
 			- 16 から開始するか、開始番号がそれより大きい場合は、2 のべき乗 - 16、32、64、128 を使用します。
-		- [ ] size() - アイテムの数
-		- [ ] Capacity() - 保持できるアイテムの数
-		- [ ] is_empty()
+		- [x] size() - アイテムの数
+		- [x] Capacity() - 保持できるアイテムの数
+		- [x] is_empty()
 		- [ ] at(index) - 指定されたインデックスにある項目を返します。インデックスが範囲外の場合は爆発します。
-		- [ ] プッシュ(アイテム)
+		- [x] プッシュ(アイテム)
 		- [ ] insert(index, item) - インデックスに項目を挿入し、そのインデックスの値と末尾の要素を右にシフトします
 		- [ ] prepend(item) - インデックス 0 の上に挿入を使用できます
 		- [ ] Pop() - 末尾から削除し、値を返します
