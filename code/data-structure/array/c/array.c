@@ -49,6 +49,18 @@ void push(struct Vector *vector, int item) {
   vector->size = array_size + 1;
 }
 
+// 指定したインデックスの値を取得する。
+// 範囲外アクセスの場合は爆発する。
+int at(struct Vector *vector, int index) {
+  // インデックスのチェック
+  int vector_size = vector->size;
+  if (vector_size <= index) {
+    return -999;
+  }
+  // 要素の取得
+  return *(vector->pointer_to_array + index);
+}
+
 int main() {
   // vectorで参照する先の配列(初期値)
   int actual_array[16];
@@ -80,6 +92,10 @@ int main() {
     printf("error. vector is empty.");
     return -1;
   }
+
+  // プッシュしたアイテムを取得
+  int item_0 = at(&vector, 0);
+  printf("item_0: %d\n", item_0);
 
   printf("finish.");
 
