@@ -75,6 +75,19 @@ void insert(struct Vector *vector, int index, int item) {
 // index 0に要素を挿入
 void prepend(struct Vector *vector, int item) { insert(vector, 0, item); }
 
+// 最後尾の要素を削除して取得する
+int pop(struct Vector *vector) {
+  int last_index = vector->size;
+  int last_item = at(vector, last_index);
+
+  // 削除した後は初期値である0を入れておく
+  insert(vector, last_index, 0);
+
+  // sizeを減らす
+  vector->size = vector->size - 1;
+  return last_item;
+}
+
 int main() {
   // vectorで参照する先の配列(初期値)
   int actual_array[16];
