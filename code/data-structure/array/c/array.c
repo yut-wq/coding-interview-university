@@ -29,17 +29,6 @@ bool is_empty(struct Vector *vector) {
   }
 }
 
-// 指定されたインデックスの値を取得する
-// int at(struct Vector *vector, int index) {
-//   // indexが範囲内かの判定
-//   if (index < 0 || vector->size - 1 < index) {
-//     // indexが範囲外である
-//     // 爆発する。
-//     return -999;
-//   }
-//   return vector->pointer_to_array;
-// }
-
 // サイズを見て、サイズ+1に要素を挿入
 // サイズが不足した場合、リサイズ(サイズの拡大)が必要。
 // 追加した後に、サイズを加算する
@@ -59,6 +48,28 @@ int at(struct Vector *vector, int index) {
   }
   // 要素の取得
   return *(vector->pointer_to_array + index);
+}
+
+// 指定したインデックスに値を挿入する
+void insert(struct Vector *vector, int index, int item) {
+  // インデックスがサイズを超過していないことを確認する
+  int vector_size = vector->size;
+  if (vector_size <= index) {
+    return;
+  }
+
+  // 挿入処理
+  // 後ろからindexの部分までを後ろにずらす
+  for (int vector_index = vector_size - 1; vector_index >= index;
+       vector_index--) {
+    int old_item = *(vector->pointer_to_array + vector_index);
+    *(vector->pointer_to_array + vector_index + 1) = old_item;
+  }
+
+  // indexに該当要素を追加する
+  *(vector->pointer_to_array + index) = item;
+  // サイズの追加
+  vector->size = vector_size + 1;
 }
 
 int main() {
@@ -96,6 +107,12 @@ int main() {
   // プッシュしたアイテムを取得
   int item_0 = at(&vector, 0);
   printf("item_0: %d\n", item_0);
+
+  // アイテムの挿入
+  int new_item = 5;
+  insert(&vector, 0, new_item);
+  int insert_item = at(&vector, 0);
+  printf("insert_item: %d\n", insert_item);
 
   printf("finish.");
 
