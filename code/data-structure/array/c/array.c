@@ -88,6 +88,19 @@ int pop(struct Vector *vector) {
   return last_item;
 }
 
+// 対象のindexの要素を削除する
+// 削除後は全ての要素を左に詰める
+void delete(struct Vector *vector, int index) {
+  int last_index = vector->size - 1;
+  for (int vector_index = index; vector_index < last_index; vector_index++) {
+    // 1つ右の要素を代入する
+    *(vector->pointer_to_array + vector_index) =
+        *(vector->pointer_to_array + vector_index + 1);
+  }
+  // サイズを減らす
+  vector->size -= 1;
+}
+
 int main() {
   // vectorで参照する先の配列(初期値)
   int actual_array[16];
