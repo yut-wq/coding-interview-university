@@ -72,6 +72,9 @@ void insert(struct Vector *vector, int index, int item) {
   vector->size = vector_size + 1;
 }
 
+// index 0に要素を挿入
+void prepend(struct Vector *vector, int item) { insert(vector, 0, item); }
+
 int main() {
   // vectorで参照する先の配列(初期値)
   int actual_array[16];
