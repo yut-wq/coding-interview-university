@@ -101,6 +101,18 @@ void delete(struct Vector *vector, int index) {
   vector->size -= 1;
 }
 
+// itemがvector内にあればindexを返す
+// そうでなければ-1を返す
+int find(struct Vector *vector, int item) {
+  int vector_size = vector->size;
+  for (int vector_index = 0; vector_index < vector_size; vector_index++) {
+    if (*(vector->pointer_to_array + vector_index) == item) {
+      return vector_index;
+    }
+  }
+  return -1;
+}
+
 int main() {
   // vectorで参照する先の配列(初期値)
   int actual_array[16];
