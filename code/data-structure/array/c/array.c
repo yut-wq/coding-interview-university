@@ -126,6 +126,13 @@ void remove_item(struct Vector *vector, int item) {
   delete (vector, item_index);
 }
 
+// 容量と要素数が等しくなった場合、サイズを2倍にする。
+// 現在の要素数が容量の1/4の場合、サイズを半分にする。
+// ここで新規配列を定義してもこの関数を抜けた時にメモリが解放されてしまうため、
+// mallocなどでヒープに確保しなければならない。
+// 実装方針を変更しなければならない。
+void change_size(struct Vector *vector) {}
+
 int main() {
   // vectorで参照する先の配列(初期値)
   int actual_array[16];
