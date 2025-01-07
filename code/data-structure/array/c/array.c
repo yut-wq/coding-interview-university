@@ -113,6 +113,19 @@ int find(struct Vector *vector, int item) {
   return -1;
 }
 
+// itemがvector内にあれば削除する
+void remove_item(struct Vector *vector, int item) {
+  int item_index = find(vector, item);
+
+  // アイテムがない場合、無視
+  if (item_index == -1) {
+    return;
+  }
+
+  // アイテムがある場合、削除
+  delete (vector, item_index);
+}
+
 int main() {
   // vectorで参照する先の配列(初期値)
   int actual_array[16];
