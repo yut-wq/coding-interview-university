@@ -27,4 +27,13 @@ mod tests {
         vec.push(4);
         assert_eq!(vec.capacity(), 6);
     }
+
+    #[test]
+    fn is_empty() {
+        let vec = vec![1, 2, 4, 5];
+        assert!(!vec.is_empty());
+
+        let vec: Vec<i32> = vec![];
+        assert!(vec.is_empty());
+    }
 }
