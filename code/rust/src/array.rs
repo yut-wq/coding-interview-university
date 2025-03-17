@@ -36,4 +36,17 @@ mod tests {
         let vec: Vec<i32> = vec![];
         assert!(vec.is_empty());
     }
+
+    #[test]
+    fn at() {
+        // indexを指定して要素を取得する。
+        let vec = vec![1, 2, 4, 5];
+        assert_eq!(vec[0], 1);
+        assert_eq!(vec[1], 2);
+        assert_eq!(vec[2], 4);
+        assert_eq!(vec[3], 5);
+
+        // 範囲外アクセスはパニックする。
+        // assert_eq!(vec[4], 5);
+    }
 }
