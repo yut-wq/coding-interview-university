@@ -42,8 +42,8 @@ trait MyRemove {
     fn my_remove(&mut self, value: Self::Item);
 }
 
-impl MyRemove for Vec<i32> {
-    type Item = i32;
+impl<T: Eq + PartialEq> MyRemove for Vec<T> {
+    type Item = T;
 
     fn my_remove(&mut self, value: Self::Item) {
         let mut delete_index = vec![];
@@ -58,6 +58,29 @@ impl MyRemove for Vec<i32> {
         for index in delete_index {
             self.delete(index);
         }
+    }
+}
+
+#[allow(dead_code)]
+/// 値を検索し、その値を持つ最初のインデックスを返します。見つからない場合は -1 を返します。
+trait Find {
+    #[allow(unused_variables)]
+    type Item;
+    #[allow(unused_variables)]
+    fn find(&self, value: Self::Item) -> i64;
+}
+
+impl<T: PartialEq + Eq> Find for Vec<T> {
+    type Item = T;
+
+    fn find(&self, value: Self::Item) -> i64 {
+        for (index, item) in self.iter().enumerate() {
+            if *item == value {
+                return i64::try_from(index).unwrap();
+            }
+        }
+
+        -1
     }
 }
 
@@ -168,5 +191,14 @@ mod tests {
 
         assert_eq!(vec.len(), 1);
         assert_eq!(vec[0], 2);
+    }
+
+    #[test]
+    fn find() {
+        // 値を検索し、その値を持つ最初のインデックスを返します。見つからない場合は -1 を返します。
+        let vec = vec![1, 2, 1];
+        assert_eq!(vec.find(1), 0);
+        assert_eq!(vec.find(2), 1);
+        assert_eq!(vec.find(3), -1);
     }
 }
