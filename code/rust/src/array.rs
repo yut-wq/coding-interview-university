@@ -33,6 +33,34 @@ impl<T> Delete for Vec<T> {
     }
 }
 
+#[allow(dead_code)]
+/// 値を検索し、それを保持するインデックスを削除します (複数の場所にある場合でも)
+trait MyRemove {
+    #[allow(unused_variables)]
+    type Item;
+    #[allow(unused_variables)]
+    fn my_remove(&mut self, value: Self::Item);
+}
+
+impl MyRemove for Vec<i32> {
+    type Item = i32;
+
+    fn my_remove(&mut self, value: Self::Item) {
+        let mut delete_index = vec![];
+        for (index, item) in self.iter().enumerate() {
+            if *item == value {
+                // deleteした際にindexが変動するので、考慮したインデックスを保存する。
+                let index = index - delete_index.len();
+                delete_index.push(index);
+            }
+        }
+
+        for index in delete_index {
+            self.delete(index);
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -130,5 +158,15 @@ mod tests {
         assert_eq!(vec.len(), 2);
         assert_eq!(vec[0], 1);
         assert_eq!(vec[1], 3);
+    }
+
+    #[test]
+    fn my_remove() {
+        // 値を検索し、それを保持するインデックスを削除します (複数の場所にある場合でも)
+        let mut vec = vec![1, 2, 1];
+        vec.my_remove(1);
+
+        assert_eq!(vec.len(), 1);
+        assert_eq!(vec[0], 2);
     }
 }
