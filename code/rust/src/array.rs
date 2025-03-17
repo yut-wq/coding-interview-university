@@ -3,8 +3,26 @@
 //! vectorのドキュメント
 //! <https://doc.rust-lang.org/std/vec/struct.Vec.html>
 
+#[allow(dead_code)]
+/// インデックス0にアイテムを挿入する。
+trait Prepend {
+    #[allow(unused_variables)]
+    type Item;
+    #[allow(unused_variables)]
+    fn prepend(&mut self, value: Self::Item) {}
+}
+
+impl<T> Prepend for Vec<T> {
+    type Item = T;
+
+    fn prepend(&mut self, value: Self::Item) {
+        self.insert(0, value);
+    }
+}
+
 #[cfg(test)]
 mod tests {
+    use super::*;
 
     #[test]
     fn get_size_success() {
@@ -64,6 +82,17 @@ mod tests {
 
         assert_eq!(vec[0], 1);
         assert_eq!(vec[1], 99);
+        assert_eq!(vec[2], 2);
+        assert_eq!(vec[3], 3);
+    }
+
+    #[test]
+    fn prepend() {
+        let mut vec = vec![1, 2, 3];
+        vec.prepend(0);
+
+        assert_eq!(vec[0], 0);
+        assert_eq!(vec[1], 1);
         assert_eq!(vec[2], 2);
         assert_eq!(vec[3], 3);
     }
