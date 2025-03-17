@@ -49,4 +49,11 @@ mod tests {
         // 範囲外アクセスはパニックする。
         // assert_eq!(vec[4], 5);
     }
+
+    #[test]
+    fn push() {
+        let mut vec = vec![];
+        vec.push(1);
+        assert_eq!(vec[0], 1);
+    }
 }
