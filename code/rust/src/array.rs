@@ -20,6 +20,19 @@ impl<T> Prepend for Vec<T> {
     }
 }
 
+/// インデックスにある項目を削除し、末尾の要素をすべて左にシフトする。
+#[allow(dead_code)]
+trait Delete {
+    #[allow(unused_variables)]
+    fn delete(&mut self, index: usize) {}
+}
+
+impl<T> Delete for Vec<T> {
+    fn delete(&mut self, index: usize) {
+        self.remove(index);
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -106,5 +119,16 @@ mod tests {
         assert_eq!(vec.len(), 2);
         assert_eq!(vec[0], 1);
         assert_eq!(vec[1], 2);
+    }
+
+    #[test]
+    fn delete() {
+        // インデックスにある項目を削除し、末尾の要素をすべて左にシフトする
+        let mut vec = vec![1, 2, 3];
+        vec.delete(1);
+
+        assert_eq!(vec.len(), 2);
+        assert_eq!(vec[0], 1);
+        assert_eq!(vec[1], 3);
     }
 }
