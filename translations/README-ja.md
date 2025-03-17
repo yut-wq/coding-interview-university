@@ -550,7 +550,7 @@ Anki 形式のフラッシュカード データベース: https://ankiweb.net/s
     - [ポインターへのポインター](https://www.eskimo.com/~scs/cclass/int/sx8.html)
   - [ ] 実装する(私はテールポインタ＆なしで行った)：
     - [x] size() - リスト内のデータ要素の数を返す
-    - [ ] empty() - 空の場合は bool を返します
+    - [x] empty() - 空の場合は bool を返します
     - [ ] value_at(index) - n 番目の項目の値を返します(最初は 0 から始まります)
     - [ ] push_front(value) - リストの先頭に項目を追加します
     - [ ] pop_front() - 前面アイテムを削除してその値を返します
