@@ -56,4 +56,15 @@ mod tests {
         vec.push(1);
         assert_eq!(vec[0], 1);
     }
+
+    #[test]
+    fn insert() {
+        let mut vec = vec![1, 2, 3];
+        vec.insert(1, 99);
+
+        assert_eq!(vec[0], 1);
+        assert_eq!(vec[1], 99);
+        assert_eq!(vec[2], 2);
+        assert_eq!(vec[3], 3);
+    }
 }
