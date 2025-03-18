@@ -51,4 +51,16 @@ mod tests {
         assert_eq!(list.value_at(1), 1);
         assert_eq!(list.value_at(2), 2);
     }
+
+    #[test]
+    fn push_front() {
+        // indexの値を返す
+        let mut list = LinkedList::from([0, 1, 2]);
+        list.push_front(999);
+
+        assert_eq!(list.value_at(0), 999);
+        assert_eq!(list.value_at(1), 0);
+        assert_eq!(list.value_at(2), 1);
+        assert_eq!(list.value_at(3), 2);
+    }
 }
