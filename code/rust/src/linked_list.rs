@@ -92,4 +92,10 @@ mod tests {
         let list = LinkedList::from([0, 1, 2]);
         assert_eq!(list.front().unwrap(), &0);
     }
+
+    #[test]
+    fn back() {
+        let list = LinkedList::from([0, 1, 2]);
+        assert_eq!(list.back().unwrap(), &2);
+    }
 }
