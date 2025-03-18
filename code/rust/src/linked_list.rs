@@ -1,8 +1,29 @@
 //! linked listの実装、テスト。
 
+use std::collections::LinkedList;
+
+/// Linked Listで実装するメソッド群。
+#[allow(dead_code)]
+trait MyLinkedList {
+    type Item;
+    fn value_at(&self, index: usize) -> Self::Item;
+}
+
+impl<T: Copy> MyLinkedList for LinkedList<T> {
+    type Item = T;
+
+    fn value_at(&self, index: usize) -> Self::Item {
+        for (now_index, item) in self.iter().enumerate() {
+            if index == now_index {
+                return *item;
+            }
+        }
+        panic!("invalid index");
+    }
+}
+
 #[cfg(test)]
 mod tests {
-    use std::collections::LinkedList;
 
     use super::*;
 
@@ -19,5 +40,15 @@ mod tests {
 
         let list: LinkedList<i32> = LinkedList::from([]);
         assert!(list.is_empty());
+    }
+
+    #[test]
+    fn value_at() {
+        // indexの値を返す
+        let list = LinkedList::from([0, 1, 2]);
+
+        assert_eq!(list.value_at(0), 0);
+        assert_eq!(list.value_at(1), 1);
+        assert_eq!(list.value_at(2), 2);
     }
 }
