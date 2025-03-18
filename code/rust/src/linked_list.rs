@@ -2,6 +2,38 @@
 
 use std::collections::LinkedList;
 
+#[allow(dead_code)]
+/// Linked Listをenumを用いて実装
+enum MyLinkedList1 {
+    /// ノード
+    /// 値と次のノードへのポインターを持つ。
+    Node(i32, Box<MyLinkedList1>),
+    /// 終端
+    Nill,
+}
+
+impl MyLinkedList1 {
+    fn new() -> Self {
+        MyLinkedList1::Nill
+    }
+
+    fn size(&self) -> usize {
+        let mut size = 0;
+        let mut node = self;
+        loop {
+            match node {
+                MyLinkedList1::Node(_, next_node) => {
+                    size += 1;
+                    node = next_node;
+                }
+                MyLinkedList1::Nill => break,
+            }
+        }
+
+        size
+    }
+}
+
 /// Linked Listで実装するメソッド群。
 #[allow(dead_code)]
 trait MyLinkedList {
@@ -29,8 +61,11 @@ mod tests {
 
     #[test]
     fn size() {
-        let list = LinkedList::from([0, 1, 2]);
-        assert_eq!(list.len(), 3);
+        let list = MyLinkedList1::new();
+        assert_eq!(list.size(), 0);
+
+        let list = MyLinkedList1::Node(3, Box::new(MyLinkedList1::Nill));
+        assert_eq!(list.size(), 1);
     }
 
     #[test]
