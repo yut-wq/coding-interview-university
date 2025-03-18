@@ -86,4 +86,10 @@ mod tests {
         let mut list = LinkedList::from([0, 1, 2]);
         assert_eq!(list.pop_back().unwrap(), 2);
     }
+
+    #[test]
+    fn front() {
+        let list = LinkedList::from([0, 1, 2]);
+        assert_eq!(list.front().unwrap(), &0);
+    }
 }
