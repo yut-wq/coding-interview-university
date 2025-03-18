@@ -80,4 +80,10 @@ mod tests {
         assert_eq!(list.value_at(2), 2);
         assert_eq!(list.value_at(3), 999);
     }
+
+    #[test]
+    fn pop_back() {
+        let mut list = LinkedList::from([0, 1, 2]);
+        assert_eq!(list.pop_back().unwrap(), 2);
+    }
 }
