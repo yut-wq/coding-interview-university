@@ -1,26 +1,24 @@
 //! linked listの実装、テスト。
 
-use std::collections::LinkedList;
-
 #[allow(dead_code)]
 /// Linked Listをenumを用いて実装
-enum MyLinkedList1 {
+enum MyLinkedList {
     /// ノード
     /// 値と次のノードへのポインターを持つ。
-    Node(i32, Box<MyLinkedList1>),
+    Node(i32, Box<MyLinkedList>),
     /// 終端
     Nill,
 }
 
-impl MyLinkedList1 {
+impl MyLinkedList {
     fn new() -> Self {
-        MyLinkedList1::Nill
+        MyLinkedList::Nill
     }
 
     fn size(&self) -> usize {
         let mut size = 0;
         let mut node = self;
-        while let MyLinkedList1::Node(_, next_node) = node {
+        while let MyLinkedList::Node(_, next_node) = node {
             size += 1;
             node = next_node;
         }
@@ -36,7 +34,7 @@ impl MyLinkedList1 {
     fn value_at(&self, index: usize) -> i32 {
         let mut now_index = 0;
         let mut node = self;
-        while let MyLinkedList1::Node(item, next_node) = node {
+        while let MyLinkedList::Node(item, next_node) = node {
             if now_index == index {
                 return *item;
             }
@@ -47,7 +45,7 @@ impl MyLinkedList1 {
     }
 
     fn push_front(self, item: i32) -> Self {
-        MyLinkedList1::Node(item, Box::new(self))
+        MyLinkedList::Node(item, Box::new(self))
     }
 }
 
@@ -55,39 +53,40 @@ impl MyLinkedList1 {
 mod tests {
 
     use super::*;
+    use std::collections::LinkedList;
 
     #[test]
     fn size() {
-        let list = MyLinkedList1::new();
+        let list = MyLinkedList::new();
         assert_eq!(list.size(), 0);
 
-        let list = MyLinkedList1::Node(3, Box::new(MyLinkedList1::Nill));
+        let list = MyLinkedList::Node(3, Box::new(MyLinkedList::Nill));
         assert_eq!(list.size(), 1);
     }
 
     #[test]
     fn is_empty() {
-        let list = MyLinkedList1::Node(
+        let list = MyLinkedList::Node(
             0,
-            Box::new(MyLinkedList1::Node(
+            Box::new(MyLinkedList::Node(
                 1,
-                Box::new(MyLinkedList1::Node(2, Box::new(MyLinkedList1::Nill))),
+                Box::new(MyLinkedList::Node(2, Box::new(MyLinkedList::Nill))),
             )),
         );
         assert!(!list.is_empty());
 
-        let list = MyLinkedList1::Nill;
+        let list = MyLinkedList::Nill;
         assert!(list.is_empty());
     }
 
     #[test]
     fn value_at() {
         // indexの値を返す
-        let list = MyLinkedList1::Node(
+        let list = MyLinkedList::Node(
             0,
-            Box::new(MyLinkedList1::Node(
+            Box::new(MyLinkedList::Node(
                 1,
-                Box::new(MyLinkedList1::Node(2, Box::new(MyLinkedList1::Nill))),
+                Box::new(MyLinkedList::Node(2, Box::new(MyLinkedList::Nill))),
             )),
         );
 
@@ -98,11 +97,11 @@ mod tests {
 
     #[test]
     fn push_front() {
-        let list = MyLinkedList1::Node(
+        let list = MyLinkedList::Node(
             0,
-            Box::new(MyLinkedList1::Node(
+            Box::new(MyLinkedList::Node(
                 1,
-                Box::new(MyLinkedList1::Node(2, Box::new(MyLinkedList1::Nill))),
+                Box::new(MyLinkedList::Node(2, Box::new(MyLinkedList::Nill))),
             )),
         );
         let new_list = list.push_front(999);
