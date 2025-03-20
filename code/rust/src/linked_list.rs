@@ -27,6 +27,10 @@ impl MyLinkedList1 {
 
         size
     }
+
+    fn is_empty(&self) -> bool {
+        self.size() == 0
+    }
 }
 
 /// Linked Listで実装するメソッド群。
@@ -65,10 +69,16 @@ mod tests {
 
     #[test]
     fn is_empty() {
-        let list = LinkedList::from([0, 1, 2]);
+        let list = MyLinkedList1::Node(
+            2,
+            Box::new(MyLinkedList1::Node(
+                1,
+                Box::new(MyLinkedList1::Node(0, Box::new(MyLinkedList1::Nill))),
+            )),
+        );
         assert!(!list.is_empty());
 
-        let list: LinkedList<i32> = LinkedList::from([]);
+        let list = MyLinkedList1::Nill;
         assert!(list.is_empty());
     }
 
