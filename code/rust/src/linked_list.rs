@@ -20,14 +20,9 @@ impl MyLinkedList1 {
     fn size(&self) -> usize {
         let mut size = 0;
         let mut node = self;
-        loop {
-            match node {
-                MyLinkedList1::Node(_, next_node) => {
-                    size += 1;
-                    node = next_node;
-                }
-                MyLinkedList1::Nill => break,
-            }
+        while let MyLinkedList1::Node(_, next_node) = node {
+            size += 1;
+            node = next_node;
         }
 
         size
