@@ -47,6 +47,16 @@ impl MyLinkedList {
     fn push_front(self, item: i32) -> Self {
         MyLinkedList::Node(item, Box::new(self))
     }
+
+    fn pop_front(&mut self) -> i32 {
+        match &self {
+            MyLinkedList::Node(item, my_lined_list) => {
+                self = *my_lined_list;
+                *item
+            }
+            MyLinkedList::Nill => panic!("no item."),
+        }
+    }
 }
 
 #[cfg(test)]
