@@ -2,6 +2,7 @@
 
 #[allow(dead_code)]
 /// Linked Listをenumを用いて実装
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug)]
 enum MyLinkedList {
     /// ノード
     /// 値と次のノードへのポインターを持つ。
@@ -54,16 +55,11 @@ impl MyLinkedList {
         MyLinkedList::Node(item, Box::new(self))
     }
 
-    #[allow(dead_code)]
-    fn pop_front(&mut self) -> i32 {
-        todo!()
-        // match &self {
-        //     MyLinkedList::Node(item, my_lined_list) => {
-        //         self = *my_lined_list;
-        //         *item
-        //     }
-        //     MyLinkedList::Nill => panic!("no item."),
-        // }
+    fn pop_front(self) -> (i32, Self) {
+        match self {
+            MyLinkedList::Node(item, my_lined_list) => (item, *my_lined_list),
+            MyLinkedList::Nill => panic!("no item."),
+        }
     }
 }
 
@@ -132,9 +128,23 @@ mod tests {
 
     #[test]
     fn pop_front() {
-        let mut list = LinkedList::from([0, 1, 2]);
+        let list = MyLinkedList::Node(
+            0,
+            Box::new(MyLinkedList::Node(
+                1,
+                Box::new(MyLinkedList::Node(2, Box::new(MyLinkedList::Nill))),
+            )),
+        );
 
-        assert_eq!(list.pop_front().unwrap(), 0);
+        let (value, list) = list.pop_front();
+        assert_eq!(value, 0);
+        assert_eq!(
+            list,
+            MyLinkedList::Node(
+                1,
+                Box::new(MyLinkedList::Node(2, Box::new(MyLinkedList::Nill))),
+            )
+        );
     }
 
     #[test]

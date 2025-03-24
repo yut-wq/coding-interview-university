@@ -553,7 +553,7 @@ Anki 形式のフラッシュカード データベース: https://ankiweb.net/s
     - [x] empty() - 空の場合は bool を返します
     - [x] value_at(index) - n 番目の項目の値を返します(最初は 0 から始まります)
     - [x] push_front(value) - リストの先頭に項目を追加します
-    - [ ] pop_front() - 前面アイテムを削除してその値を返します
+    - [x] pop_front() - 前面アイテムを削除してその値を返します
     - [ ] push_back(value) - 最後に項目を追加する
     - [ ] pop_back() - 終了アイテムを削除し、その値を返します
     - [ ] front() - フロントアイテムの値を取得する
