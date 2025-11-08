@@ -28,6 +28,12 @@ impl QueueFromLinkedList {
     fn dequeue(&mut self) -> Option<i32> {
         self.inner.pop_front()
     }
+
+    /// コレクションが空か判定する
+    #[allow(dead_code)]
+    fn empty(&self) -> bool {
+        self.inner.is_empty()
+    }
 }
 
 // enqueueができること
@@ -70,5 +76,21 @@ mod tests {
 
         let mut inner = queue.inner.iter();
         assert_eq!(inner.next(), None);
+    }
+
+    #[test]
+    fn 要素が空であればemptyでtrueを返す() {
+        let list = LinkedList::from([]);
+        let queue = QueueFromLinkedList { inner: list };
+
+        assert!(queue.empty());
+    }
+
+    #[test]
+    fn 要素があればemptyでfalseを返す() {
+        let list = LinkedList::from([1, 2, 3]);
+        let queue = QueueFromLinkedList { inner: list };
+
+        assert!(!queue.empty());
     }
 }
