@@ -10,11 +10,14 @@ enum MyLinkedList {
     Nill,
 }
 
+#[allow(dead_code)]
 impl MyLinkedList {
+    #[allow(dead_code)]
     fn new() -> Self {
         MyLinkedList::Nill
     }
 
+    #[allow(dead_code)]
     fn size(&self) -> usize {
         let mut size = 0;
         let mut node = self;
@@ -26,11 +29,13 @@ impl MyLinkedList {
         size
     }
 
+    #[allow(dead_code)]
     fn is_empty(&self) -> bool {
         self.size() == 0
     }
 
     /// インデックスを指定してアイテムを取得する。
+    #[allow(dead_code)]
     fn value_at(&self, index: usize) -> i32 {
         let mut now_index = 0;
         let mut node = self;
@@ -44,10 +49,12 @@ impl MyLinkedList {
         panic!("invalid index");
     }
 
+    #[allow(dead_code)]
     fn push_front(self, item: i32) -> Self {
         MyLinkedList::Node(item, Box::new(self))
     }
 
+    #[allow(dead_code)]
     fn pop_front(&mut self) -> i32 {
         todo!()
         // match &self {
