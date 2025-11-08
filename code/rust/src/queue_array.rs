@@ -65,45 +65,10 @@ mod tests {
 
     #[test]
     fn dequeueで先頭の要素を削除し取得する() {
-        let array = [
-            Some(1),
-            Some(2),
-            Some(3),
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-        ];
-        let mut queue = QueueFromArray {
-            inner: array,
-            head_pointer: 0,
-            tail_pointer: 3,
-        };
+        let mut queue = QueueFromArray::new();
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
 
         let result = queue.dequeue();
         assert_eq!(result, Some(1));
