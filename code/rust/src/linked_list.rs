@@ -49,13 +49,14 @@ impl MyLinkedList {
     }
 
     fn pop_front(&mut self) -> i32 {
-        match &self {
-            MyLinkedList::Node(item, my_lined_list) => {
-                self = *my_lined_list;
-                *item
-            }
-            MyLinkedList::Nill => panic!("no item."),
-        }
+        todo!()
+        // match &self {
+        //     MyLinkedList::Node(item, my_lined_list) => {
+        //         self = *my_lined_list;
+        //         *item
+        //     }
+        //     MyLinkedList::Nill => panic!("no item."),
+        // }
     }
 }
 
