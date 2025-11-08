@@ -43,6 +43,12 @@ impl QueueFromArray {
     fn empty(&self) -> bool {
         self.inner.iter().filter(|value| value.is_some()).count() == 0
     }
+
+    /// コレクションが満杯か判定する
+    #[allow(dead_code)]
+    fn full(&self) -> bool {
+        self.inner.iter().filter(|value| value.is_some()).count() == self.inner.len()
+    }
 }
 
 #[cfg(test)]
@@ -97,5 +103,15 @@ mod tests {
         queue.enqueue(2);
 
         assert!(!queue.empty());
+    }
+
+    #[test]
+    fn 全ての要素が埋まっている場合fullでtrueを返す() {
+        let mut queue = QueueFromArray::new();
+        for i in 1..=32 {
+            queue.enqueue(i);
+        }
+
+        assert!(queue.full());
     }
 }
