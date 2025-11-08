@@ -37,6 +37,12 @@ impl QueueFromArray {
 
         result
     }
+
+    /// コレクションが空か判定する
+    #[allow(dead_code)]
+    fn empty(&self) -> bool {
+        self.inner.iter().filter(|value| value.is_some()).count() == 0
+    }
 }
 
 #[cfg(test)]
@@ -110,5 +116,12 @@ mod tests {
 
         assert_eq!(queue.head_pointer, 1);
         assert_eq!(queue.tail_pointer, 3);
+    }
+
+    #[test]
+    fn 要素が空であればemptyでtrueを返す() {
+        let queue = QueueFromArray::new();
+
+        assert!(queue.empty());
     }
 }
