@@ -36,7 +36,6 @@ impl QueueFromLinkedList {
     }
 }
 
-// enqueueができること
 #[cfg(test)]
 mod tests {
     use super::*;
