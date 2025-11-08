@@ -114,4 +114,13 @@ mod tests {
 
         assert!(queue.full());
     }
+
+    #[test]
+    fn 空の要素がある場合fullでfalseを返す() {
+        let mut queue = QueueFromArray::new();
+
+        queue.enqueue(1);
+
+        assert!(!queue.full());
+    }
 }
