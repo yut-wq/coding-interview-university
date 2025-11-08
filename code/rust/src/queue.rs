@@ -26,10 +26,7 @@ impl QueueFromLinkedList {
     /// 先頭の要素を削除し、取得する
     #[allow(dead_code)]
     fn dequeue(&mut self) -> Option<i32> {
-        match self.inner.pop_front() {
-            Some(elm) => Some(elm),
-            None => None,
-        }
+        self.inner.pop_front()
     }
 }
 
