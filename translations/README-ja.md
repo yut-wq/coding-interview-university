@@ -578,16 +578,16 @@ Anki 形式のフラッシュカード データベース: https://ankiweb.net/s
   - [ ] [キュー(動画)](https://www.coursera.org/learn/data-structures/lecture/EShpq/queue)
   - [ ] [環状バッファ/ FIFO](https://en.wikipedia.org/wiki/Circular_buffer)
     - [ ] [【復習】3 分でわかるキュー（動画）](https://youtu.be/D6gu-_tmEpQ)
-  - [ ] テールポインタ付き連結リストを使って実装する：
+  - [x] テールポインタ付き連結リストを使って実装する：
     - enqueue(value) - テールの位置に値を追加する
     - dequeue() - 値を返し、少なくとも最近追加された要素を削除する(前面)
     - empty()
-  - [ ] 固定長配列を使って実装する：
+  - [x] 固定長配列を使って実装する：
     - enqueue(value) - 利用可能なストレージの最後にアイテムを追加する
     - dequeue() - 値を返し、最近追加された要素のうち最も古い要素を削除します
     - empty()
     - full()
-  - [ ] コスト：
+  - [x] コスト：
     - 先頭でエンキューし、末尾でデキューするリンク リストを使用した悪い実装では、最後から 2 番目の要素が必要になるため、O(n) となり、各デキューの完全な走査が発生します。
     - enqueue：O(1)(償却、連結リストと配列[プロービング])
     - dequeue：O(1)(連結リストと配列)
