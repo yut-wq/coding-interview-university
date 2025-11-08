@@ -89,4 +89,13 @@ mod tests {
 
         assert!(queue.empty());
     }
+
+    #[test]
+    fn 要素があればemptyでfalseを返す() {
+        let mut queue = QueueFromArray::new();
+        queue.enqueue(1);
+        queue.enqueue(2);
+
+        assert!(!queue.empty());
+    }
 }
