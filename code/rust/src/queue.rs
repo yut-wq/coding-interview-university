@@ -25,10 +25,10 @@ impl QueueFromLinkedList {
 
     /// 先頭の要素を削除し、取得する
     #[allow(dead_code)]
-    fn dequeue(&mut self) -> i32 {
+    fn dequeue(&mut self) -> Option<i32> {
         match self.inner.pop_front() {
-            Some(elm) => elm,
-            None => todo!(),
+            Some(elm) => Some(elm),
+            None => None,
         }
     }
 }
@@ -55,7 +55,7 @@ mod tests {
         let mut queue = QueueFromLinkedList { inner: list };
 
         let result = queue.dequeue();
-        assert_eq!(result, 1);
+        assert_eq!(result, Some(1));
 
         let mut inner = queue.inner.iter();
         assert_eq!(inner.next(), Some(&2));
@@ -63,5 +63,15 @@ mod tests {
         assert_eq!(inner.next(), None);
     }
 
-    // dequeueで要素がないとき
+    #[test]
+    fn dequeueで要素がないときにnoneを返すこと() {
+        let list = LinkedList::from([]);
+        let mut queue = QueueFromLinkedList { inner: list };
+
+        let result = queue.dequeue();
+        assert_eq!(result, None);
+
+        let mut inner = queue.inner.iter();
+        assert_eq!(inner.next(), None);
+    }
 }
